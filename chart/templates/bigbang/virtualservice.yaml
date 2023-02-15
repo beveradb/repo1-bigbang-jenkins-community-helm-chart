@@ -1,0 +1,28 @@
+{{- if .Values.istio.enabled -}}
+{{- $serviceName := include "jenkins.fullname" . -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ template "jenkins.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    helm.sh/chart: {{ include "jenkins.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/part-of: jenkins
+spec:
+  gateways:
+  {{- range .Values.istio.jenkins.gateways }}
+    - {{ . }}
+  {{- end }}
+  hosts:
+  {{- range .Values.istio.jenkins.hosts }}
+    - {{ tpl . $}}
+  {{- end }}
+  http:
+    - route:
+        - destination:
+            port:
+              number: {{ .Values.controller.servicePort }}
+            host: {{ $serviceName }}
+{{- end }}
