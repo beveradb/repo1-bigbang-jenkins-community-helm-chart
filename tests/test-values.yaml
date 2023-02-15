@@ -1,0 +1,29 @@
+controller:
+  jenkinsUrl: "jenkins.bigbang.dev"
+
+istio:
+  enabled: true
+  mtls:
+    mode: STRICT
+  jenkins:
+    enabled: true
+    gateways:
+      - istio-system/public
+    hosts:
+      - jenkins.{{ .Values.domain }}
+  injection: enabled
+
+monitoring:
+  enabled: false
+
+networkPolicies:
+  enabled: false
+
+bbtests:
+  enabled: false
+  cypress:
+    envs:
+      cypress_url: "http://jenkins.svc.cluster.local:8080"
+  scripts:
+    envs:
+      URL: "http://jenkins.svc.cluster.local:8080"
