@@ -1,6 +1,6 @@
 # jenkins
 
-![Version: 4.3.1-bb.0](https://img.shields.io/badge/Version-4.3.1--bb.0-informational?style=flat-square) ![AppVersion: 2.390](https://img.shields.io/badge/AppVersion-2.390-informational?style=flat-square)
+![Version: 4.3.1-bb.1](https://img.shields.io/badge/Version-4.3.1--bb.1-informational?style=flat-square) ![AppVersion: 2.390](https://img.shields.io/badge/AppVersion-2.390-informational?style=flat-square)
 
 Jenkins - Build great things at any scale! The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.
 
@@ -144,7 +144,7 @@ helm install jenkins chart/
 | controller.JCasC.authorizationStrategy | string | `"loggedInUsersCanDoAnything:\n  allowAnonymousRead: false"` |  |
 | controller.customInitContainers | list | `[]` |  |
 | controller.sidecars.configAutoReload.enabled | bool | `true` |  |
-| controller.sidecars.configAutoReload.image | string | `"registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.2"` |  |
+| controller.sidecars.configAutoReload.image | string | `"registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.3"` |  |
 | controller.sidecars.configAutoReload.imagePullPolicy | string | `"IfNotPresent"` |  |
 | controller.sidecars.configAutoReload.resources.limits.cpu | string | `"100m"` |  |
 | controller.sidecars.configAutoReload.resources.limits.memory | string | `"100Mi"` |  |
