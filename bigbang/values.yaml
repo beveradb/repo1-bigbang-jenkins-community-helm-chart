@@ -2,8 +2,9 @@ jenkins:
   enabled: true
   git:
     repo: https://repo1.dso.mil/big-bang/product/community/jenkins
-    tag:  4.3.1-bb.1
-    path: chart
+    tag:  ""
+    branch: "main"
+    path: ./chart
   flux: {}
   ingress:
     gateway: ""
