@@ -1,8 +1,8 @@
 apiVersion: v2
 name: jenkins
 home: https://jenkins.io/
-version: 4.3.1-bb.0
-appVersion: 2.390
+version: 4.3.1-bb.1
+appVersion: "2.390"
 description: Jenkins - Build great things at any scale! The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.
 sources:
   - https://github.com/jenkinsci/jenkins
@@ -31,7 +31,7 @@ annotations:
     - name: jenkins
       image: registry1.dso.mil/ironbank/opensource/jenkins/jenkins:2.390
     - name: k8s-sidecar
-      image: registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.2
+      image: registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.3
     - name: inbound-agent
       image: registry1.dso.mil/ironbank/opensource/jenkins/inbound-agent:3085.vc4c6977c075a-4
     - name: backup

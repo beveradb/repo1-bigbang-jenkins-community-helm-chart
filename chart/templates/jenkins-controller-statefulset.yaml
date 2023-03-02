@@ -103,7 +103,7 @@ spec:
 {{ tpl (toYaml .Values.controller.customInitContainers) . | indent 8 }}
 {{- end }}
         - name: "init"
-          image: "{{ .Values.controller.image }}:{{- include "controller.tag" . -}}"
+          image: "{{ .Values.controller.image }}:{{ include "controller.tag" . }}"
           imagePullPolicy: "{{ .Values.controller.imagePullPolicy }}"
           {{- if or .Values.controller.containerSecurityContext .Values.controller.securityContextCapabilities }}
           securityContext: {{- toYaml .Values.controller.containerSecurityContext | nindent 12 }}
@@ -159,7 +159,7 @@ spec:
             {{- end }}
       containers:
         - name: jenkins
-          image: "{{ .Values.controller.image }}:{{- include "controller.tag" . -}}"
+          image: "{{ .Values.controller.image }}:{{ include "controller.tag" . }}"
           imagePullPolicy: "{{ .Values.controller.imagePullPolicy }}"
           {{- if or .Values.controller.containerSecurityContext .Values.controller.securityContextCapabilities }}
           securityContext: {{- toYaml .Values.controller.containerSecurityContext | nindent 12 }} 
