@@ -561,7 +561,7 @@ controller:
     scrapeEndpoint: /prometheus
 
   # Can be used to disable rendering controller test resources when using helm template
-  testEnabled: true
+  testEnabled: false
 
   httpsKeyStore:
     jenkinsHttpsJksSecretName: ''
