@@ -33,6 +33,6 @@ annotations:
     - name: k8s-sidecar
       image: registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.4
     - name: inbound-agent
-      image: registry1.dso.mil/ironbank/opensource/jenkins/inbound-agent:3085.vc4c6977c075a-4
+      image: registry1.dso.mil/ironbank/opensource/jenkins/inbound-agent:3107.v665000b_51092-4
     - name: backup
       image: maorfr/kube-tasks:0.2.0
