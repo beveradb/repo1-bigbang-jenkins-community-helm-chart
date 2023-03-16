@@ -1,6 +1,6 @@
 # jenkins
 
-![Version: 4.3.1-bb.1](https://img.shields.io/badge/Version-4.3.1--bb.1-informational?style=flat-square) ![AppVersion: 2.390](https://img.shields.io/badge/AppVersion-2.390-informational?style=flat-square)
+![Version: 4.3.9-bb.0](https://img.shields.io/badge/Version-4.3.9--bb.0-informational?style=flat-square) ![AppVersion: 2.387.1-lts](https://img.shields.io/badge/AppVersion-2.387.1--lts-informational?style=flat-square)
 
 Jenkins - Build great things at any scale! The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.
 
@@ -42,7 +42,7 @@ helm install jenkins chart/
 | renderHelmLabels | bool | `true` |  |
 | controller.componentName | string | `"jenkins-controller"` |  |
 | controller.image | string | `"registry1.dso.mil/ironbank/opensource/jenkins/jenkins"` |  |
-| controller.tag | string | `"2.390"` |  |
+| controller.tag | string | `"2.387.1-lts"` |  |
 | controller.imagePullPolicy | string | `"Always"` |  |
 | controller.imagePullSecretName | string | `"private-registry"` |  |
 | controller.lifecycle | string | `nil` |  |
@@ -64,6 +64,7 @@ helm install jenkins chart/
 | controller.resources.requests.memory | string | `"1024Mi"` |  |
 | controller.resources.limits.cpu | string | `"500m"` |  |
 | controller.resources.limits.memory | string | `"1024Mi"` |  |
+| controller.shareProcessNamespace | bool | `false` |  |
 | controller.javaOpts | string | `"-Xms512m -Xmx512m -Dcom.redhat.fips=false"` |  |
 | controller.usePodSecurityContext | bool | `true` |  |
 | controller.runAsUser | int | `1000` |  |
@@ -116,7 +117,7 @@ helm install jenkins chart/
 | controller.agentListenerServiceAnnotations | object | `{}` |  |
 | controller.loadBalancerSourceRanges[0] | string | `"0.0.0.0/0"` |  |
 | controller.extraPorts | list | `[]` |  |
-| controller.installPlugins[0] | string | `"kubernetes:3734.v562b_b_a_627ea_c"` |  |
+| controller.installPlugins[0] | string | `"kubernetes:3896.v19b_160fd9589"` |  |
 | controller.installPlugins[1] | string | `"workflow-aggregator:590.v6a_d052e5a_a_b_5"` |  |
 | controller.installPlugins[2] | string | `"git:4.13.0"` |  |
 | controller.installPlugins[3] | string | `"configuration-as-code:1569.vb_72405b_80249"` |  |
@@ -144,7 +145,7 @@ helm install jenkins chart/
 | controller.JCasC.authorizationStrategy | string | `"loggedInUsersCanDoAnything:\n  allowAnonymousRead: false"` |  |
 | controller.customInitContainers | list | `[]` |  |
 | controller.sidecars.configAutoReload.enabled | bool | `true` |  |
-| controller.sidecars.configAutoReload.image | string | `"registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.3"` |  |
+| controller.sidecars.configAutoReload.image | string | `"registry1.dso.mil/ironbank/kiwigrid/k8s-sidecar:1.22.4"` |  |
 | controller.sidecars.configAutoReload.imagePullPolicy | string | `"IfNotPresent"` |  |
 | controller.sidecars.configAutoReload.resources.limits.cpu | string | `"100m"` |  |
 | controller.sidecars.configAutoReload.resources.limits.memory | string | `"100Mi"` |  |
@@ -203,9 +204,10 @@ helm install jenkins chart/
 | controller.googlePodMonitor.enabled | bool | `false` |  |
 | controller.googlePodMonitor.scrapeInterval | string | `"60s"` |  |
 | controller.googlePodMonitor.scrapeEndpoint | string | `"/prometheus"` |  |
-| controller.testEnabled | bool | `true` |  |
+| controller.testEnabled | bool | `false` |  |
 | controller.httpsKeyStore.jenkinsHttpsJksSecretName | string | `""` |  |
 | controller.httpsKeyStore.enable | bool | `false` |  |
+| controller.httpsKeyStore.disableSecretMount | bool | `false` |  |
 | controller.httpsKeyStore.httpPort | int | `8081` |  |
 | controller.httpsKeyStore.path | string | `"/var/jenkins_keystore"` |  |
 | controller.httpsKeyStore.fileName | string | `"keystore.jks"` |  |
@@ -220,13 +222,14 @@ helm install jenkins chart/
 | agent.maxRequestsPerHostStr | string | `"32"` |  |
 | agent.namespace | string | `nil` |  |
 | agent.image | string | `"registry1.dso.mil/ironbank/opensource/jenkins/inbound-agent"` |  |
-| agent.tag | string | `"3085.vc4c6977c075a-4"` |  |
+| agent.tag | string | `"3107.v665000b_51092-4"` |  |
 | agent.workingDir | string | `"/home/jenkins/agent"` |  |
 | agent.nodeUsageMode | string | `"NORMAL"` |  |
 | agent.customJenkinsLabels | list | `[]` |  |
 | agent.imagePullSecretName | string | `"private-registry"` |  |
 | agent.componentName | string | `"jenkins-agent"` |  |
 | agent.websocket | bool | `false` |  |
+| agent.directConnection | bool | `false` |  |
 | agent.privileged | bool | `false` |  |
 | agent.runAsUser | string | `nil` |  |
 | agent.runAsGroup | string | `nil` |  |
@@ -278,10 +281,12 @@ helm install jenkins chart/
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
 | serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.extraLabels | object | `{}` |  |
 | serviceAccount.imagePullSecretName | string | `nil` |  |
 | serviceAccountAgent.create | bool | `false` |  |
 | serviceAccountAgent.name | string | `nil` |  |
 | serviceAccountAgent.annotations | object | `{}` |  |
+| serviceAccountAgent.extraLabels | object | `{}` |  |
 | serviceAccountAgent.imagePullSecretName | string | `nil` |  |
 | backup.enabled | bool | `false` |  |
 | backup.componentName | string | `"backup"` |  |
@@ -313,6 +318,8 @@ helm install jenkins chart/
 | awsSecurityGroupPolicies.policies[0].name | string | `""` |  |
 | awsSecurityGroupPolicies.policies[0].securityGroupIds | list | `[]` |  |
 | awsSecurityGroupPolicies.policies[0].podSelector | object | `{}` |  |
+| helmtest.bats.image | string | `"bats/bats"` |  |
+| helmtest.bats.tag | string | `"1.2.1"` |  |
 | domain | string | `"bigbang.dev"` |  |
 | istio.enabled | bool | `false` |  |
 | istio.mtls | object | `{"mode":"STRICT"}` | Default argocd peer authentication |
