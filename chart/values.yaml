@@ -19,7 +19,7 @@ controller:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-controller"
   image: "registry1.dso.mil/ironbank/opensource/jenkins/jenkins"
-  tag: "2.387.1-lts"
+  tag: "2.387.2-lts"
   # tagLabel: jdk11
   imagePullPolicy: "Always"
   imagePullSecretName: private-registry
