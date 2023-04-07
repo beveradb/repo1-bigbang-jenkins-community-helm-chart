@@ -5,7 +5,7 @@ metadata:
 upstream:
   type: git
   git:
-    commit: b9179a41b0eeb5733beafeb9f083b64f8c305a32
+    commit: 11f02e980ba6d16eded0324f4ecdc1919b63379c
     repo: https://github.com/jenkinsci/helm-charts
     directory: /charts/jenkins
-    ref: jenkins-4.3.1
+    ref: jenkins-4.3.9
